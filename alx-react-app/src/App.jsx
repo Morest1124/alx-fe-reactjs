@@ -16,9 +16,7 @@ function App() {
 
   return (
     <>
-    <WelcomeMessage />
 
-    <UserProfile name = "Morest" age = "19" boi ="We, the unwilling, led by the unknowing, are doing the impossible for the ungrateful. We have done so much, for so long, with so little, we are now qualified to do anything with nothing."/>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -44,6 +42,9 @@ function App() {
     <WelcomeMessage />
     
     <UserProfile name = "Morest" age = "19" boi ="We, the unwilling, led by the unknowing, are doing the impossible for the ungrateful. We have done so much, for so long, with so little, we are now qualified to do anything with nothing."/>
+    <Header />
+    <MainContent />
+    <Footer />
     </>
   )
 }
