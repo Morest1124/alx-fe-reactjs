@@ -1,4 +1,4 @@
-function UserDetails({ userData }) {
+function UserDetails({ UserContext }) {
   return (
     <div>
       <p>Name: {userData.name}</p>
