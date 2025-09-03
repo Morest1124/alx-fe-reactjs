@@ -10,7 +10,7 @@ function App() {
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
   return (
     <>
-      <UserConext.Provider ProfilePage={userData}>
+      <UserConext.Provider value={userData}>
         <ProfilePage userData={userData} />;
       </UserConext.Provider>
       <WelcomeMessage />
