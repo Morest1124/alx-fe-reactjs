@@ -15,3 +15,5 @@ import { Link } from "react-router-dom";
     </li>
   </ul>
 </nav>;
+
+export default Navbar;
