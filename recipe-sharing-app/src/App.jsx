@@ -1,6 +1,9 @@
 import { useState } from "react";
 import RecipeList from "./components/RecipeList";
 import AddRecipeForm from "./components/AddRecipeForm";
+import addRecipe from "./components/addRecipe";
+import updateRecipe from "./components/updateRecipe";
+import deleteRecipe from "./components/deleteRecipe";
 import "./App.css";
 
 import create from "zustand";
