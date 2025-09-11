@@ -7,7 +7,7 @@ const RecipeDetails = () => {
 
   // Use the Zustand store to find the specific recipe and get the deleteRecipe action.
   const recipe = useRecipeStore((state) =>
-    state.recipes.find((r) => r.id === id)
+    state.recipes.id.find((r) => r.id === id)
   );
   const deleteRecipe = useRecipeStore((state) => state.deleteRecipe);
 
