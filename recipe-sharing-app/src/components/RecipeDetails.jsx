@@ -18,27 +18,25 @@ const RecipeDetails = () => {
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this recipe?")) {
       // Correctly call the deleteRecipe action with the recipe's ID
-      deleteRecipe(recipe.id); 
+      deleteRecipe(recipe.id);
       navigate("/"); // Redirect to the main list
     }
   };
-    }
-
-
-  // Handle the case where the recipe is not found.
-  if (!recipe) {
-    return <div>Recipe not found.</div>;
-  }
-
-  // Return the JSX for the component.
-  return (
-    <div>
-      <h1>{recipe.title}</h1>
-      <p>{recipe.description}</p>
-      <button onClick={handleDelete}>Delete Recipe</button>
-      {/* Add a button or link to the edit page here */}
-    </div>
-  );
 };
+
+// Handle the case where the recipe is not found.
+if (!recipe) {
+  return <div>Recipe not found.</div>;
+}
+
+// Return the JSX for the component.
+return (
+  <div>
+    <h1>{recipe.title}</h1>
+    <p>{recipe.description}</p>
+    <button onClick={handleDelete}>Delete Recipe</button>
+    {/* Add a button or link to the edit page here */}
+  </div>
+);
 
 export default RecipeDetails;
