@@ -4,15 +4,18 @@ import AddRecipeForm from "./components/AddRecipeForm";
 import addRecipe from "./components/addRecipe";
 import updateRecipe from "./components/updateRecipe";
 import deleteRecipe from "./components/deleteRecipe";
+import { BrowserRouter, Route, Routes, router } from "react-router-dom";
 import "./App.css";
 
-import create from "zustand";
-
-const useRecipeStore = create((set) => ({
-  recipes: [],
-  addRecipe: (newRecipe) =>
-    set((state) => ({ recipes: [...state.recipes, newRecipe] })),
-  setRecipes: (recipes) => set({ recipes }),
-}));
-
-export default useRecipeStore;
+function App() {
+  return (
+    <router>
+      <Routes>
+        {" "}
+        <Route path="/" element={<RecipeList />} />
+        <Route path="/recipes/:id" element={<RecipeDetails />} />
+        <Route path="/recipes/:id/edit" element={<EditRecipeForm />} />
+      </Routes>
+    </router>
+  );
+}
