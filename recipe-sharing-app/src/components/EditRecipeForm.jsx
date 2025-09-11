@@ -24,8 +24,9 @@ const EditRecipeForm = () => {
   });
 
   // Handle changes to the form inputs
-  const handleChange = (e) => {
+  const handleChange = (event) => {
     const { name, value } = e.target;
+    event.preventDefault();
     setFormState((prev) => ({
       ...prev,
       [name]: value,
@@ -33,8 +34,8 @@ const EditRecipeForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     // Call the updateRecipe action with the new data
     updateRecipe({
       id,
