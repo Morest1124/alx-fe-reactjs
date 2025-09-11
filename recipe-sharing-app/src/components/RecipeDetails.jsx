@@ -17,8 +17,11 @@ const RecipeDetails = () => {
   // Handle the delete logic in a separate function.
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this recipe?")) {
-      deleteRecipe(id);
-      navigate("/"); // Redirect to the homepage or recipe list after deletion.
+      // Correctly call the deleteRecipe action with the recipe's ID
+      deleteRecipe(recipe.id); 
+      navigate("/"); // Redirect to the main list
+    }
+  };
     }
   };
 
