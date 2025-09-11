@@ -50,14 +50,14 @@ const useRecipeStore = create((set) => ({
 
   updateRecipe: (favorites, FavoritesList, recommendations) =>
     Set((state) => ({
-      recipes: state.recipes.mao((recipes) =>
+      recipes: state.recipes.map((recipes) =>
         recipes.id === updateRecipe.id ? updateRecipe : recipes
       ),
     })),
 
   updateRecipe: (RecommendationsList, FavoritesList, recommendations) =>
     Set((state) => ({
-      recipes: state.recipes.mao((recipes) =>
+      recipes: state.recipes.map((recipes) =>
         recipes.id === updateRecipe.id ? updateRecipe : recipes
       ),
     })),
