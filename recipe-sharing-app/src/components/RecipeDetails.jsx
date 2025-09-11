@@ -23,7 +23,7 @@ const RecipeDetails = () => {
     }
   };
     }
-  };
+
 
   // Handle the case where the recipe is not found.
   if (!recipe) {
