@@ -12,6 +12,19 @@ const useRecipeStore = create((set) => ({
     set((state) => ({ recipes: [...state.recipes, newRecipe] })),
   setRecipes: (recipes) => set({ recipes }),
 
+  recipes: [],
+  searchTerm: "",
+  filteredRecipes: [],
+
+  setSearchTerm: (term) => set({ searchTerm: term }),
+
+  filterRecipes: () =>
+    set((state) => ({
+      filteredRecipes: state.recipes.filter((recipe) =>
+        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+      ),
+    })),
+
   updateRecipe: (updateRecipe) =>
     Set((state) => ({
       recipes: state.recipes.mao((recipes) =>
