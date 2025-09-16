@@ -1,7 +1,7 @@
 import { useState } from "react";
 import React from "react";
 
-function Search() {
+function fetchUserData() {
   const [username, setUsername] = useState("");
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -50,7 +50,11 @@ function Search() {
       {userData && (
         <div>
           <h2>{userData.login}</h2>
-          <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} width="100" />
+          <img
+            src={userData.avatar_url}
+            alt={`${userData.login}'s avatar`}
+            width="100"
+          />
           <p>Followers: {userData.followers}</p>
           <p>Following: {userData.following}</p>
           <p>Public Repos: {userData.public_repos}</p>
@@ -63,4 +67,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default fetchUserData;
