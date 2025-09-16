@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 // Using API
 
-function FetchUserName() {
+function fetchUserData() {
   const [UserName, setUserName] = useState(""); //Updates the state
   const [Loading, setLoading] = useState("");
   const [error, setError] = useState;
@@ -39,4 +39,4 @@ return (
   </>
 );
 
-export default FetchUserName;
+export default fetchUserData;
