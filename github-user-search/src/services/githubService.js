@@ -10,9 +10,9 @@ function FetchUserName() {
 
 useEffect(
   () =>
-    fetch(" https://api.github.com/users/{username}"){
-  method: 'GET'
-    }
+    fetch(" https://api.github.com/users/{username}", {
+      method: "GET",
+    })
       .then((Response) => {
         if (!Response.ok) {
           throw new error("Network error");
