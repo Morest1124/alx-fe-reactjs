@@ -5,6 +5,7 @@ import { searchUsers } from "../services/githubService";
 function Search() {
   const [username, setUsername] = useState("");
   const [location, setLocation] = useState("");
+  const [minRepos, setMinRepos] = useState(""); // 1. Add state for minRepos
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -19,12 +20,18 @@ function Search() {
     setLocation(event.target.value);
   };
 
+  // 2. Add handler for minRepos
+  const handleMinReposChange = (event) => {
+    setMinRepos(event.target.value);
+  };
+
   const handleSearch = async (isNewSearch) => {
     setLoading(true);
     setError(null);
     if (isNewSearch) {
       setUsers([]);
       setPage(1);
+      // Reset minRepos if it's a new search and you want to clear it
     }
 
     try {
@@ -32,12 +39,19 @@ function Search() {
       if (location) {
         query += `+location:${location}`;
       }
+      if (minRepos) {
+        // 4. Include minRepos in the query
+        query += `+repos:>=${minRepos}`;
+      }
       query += `&page=${isNewSearch ? 1 : page}`;
 
       const data = await searchUsers(query);
-      setUsers(prev => isNewSearch ? data.items : [...prev, ...data.items]);
-      setHasMore(data.items.length > 0 && data.total_count > (isNewSearch ? data.items.length : users.length + data.items.length));
-
+      setUsers((prev) => (isNewSearch ? data.items : [...prev, ...data.items]));
+      setHasMore(
+        data.items.length > 0 &&
+          data.total_count >
+            (isNewSearch ? data.items.length : users.length + data.items.length)
+      );
     } catch (error) {
       setError("Failed to fetch users");
     } finally {
@@ -51,9 +65,9 @@ function Search() {
   };
 
   const loadMore = () => {
-    setPage(prev => prev + 1);
+    setPage((prev) => prev + 1);
     handleSearch(false);
-  }
+  };
 
   return (
     <>
@@ -85,15 +99,27 @@ function Search() {
           <ul>
             {users.map((user) => (
               <li key={user.id}>
-                <img src={user.avatar_url} alt={`${user.login}'s avatar`} width="50" />
-                <a href={user.html_url} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={user.avatar_url}
+                  alt={`${user.login}'s avatar`}
+                  width="50"
+                />
+                <a
+                  href={user.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {user.login}
                 </a>
                 <p>Score: {user.score}</p>
               </li>
             ))}
           </ul>
-          {hasMore && <button onClick={loadMore} disabled={loading}>Load More</button>}
+          {hasMore && (
+            <button onClick={loadMore} disabled={loading}>
+              Load More
+            </button>
+          )}
         </div>
       )}
     </>
