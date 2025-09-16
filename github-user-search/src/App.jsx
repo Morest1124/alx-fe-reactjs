@@ -23,3 +23,8 @@ function App() {
 }
 
 export default App;
+
+user_data = Response.json();
+UserName = user_data("UserName");
+avarter_url = user_data("avarter_url");
+Image = user_data("img");
