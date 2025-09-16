@@ -5,6 +5,7 @@ function fetchUserData() {
   const [username, setUsername] = useState("");
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [repos, setRepos] = useState([]); // New state for repositories
   const [error, setError] = useState(null);
 
   const handleUserNameChange = (event) => {
@@ -22,8 +23,13 @@ function fetchUserData() {
       if (!response.ok) {
         throw new Error("Looks like we cant find the user");
       }
-      const data = await response.json();
-      setUserData(data);
+      const userDataResponse = await response.json();
+      setUserData(userDataResponse);
+
+      // Fetch repositories
+      const reposResponse = await fetch(userDataResponse.repos_url);
+      const reposData = await reposResponse.json();
+      setRepos(reposData);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -61,6 +67,21 @@ function fetchUserData() {
           <a href={userData.html_url} target="_blank" rel="Morest1124">
             View Profile on GitHub
           </a>
+
+          <h3>Repositories:</h3>
+          <ul>
+            {repos.map((repo) => (
+              <li key={repo.id}>
+                <a
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {repo.name}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </>
