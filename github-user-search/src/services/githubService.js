@@ -15,7 +15,7 @@ useEffect(
     })
       .then((Response) => {
         if (!Response.ok) {
-          throw new error("Network error");
+          throw new error("Looks like we cant find the user");
         }
         return Response.json();
       })
