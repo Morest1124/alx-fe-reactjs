@@ -1,41 +1,59 @@
 import { useState } from "react";
 import React from "react";
+import { searchUsers } from "../services/githubService";
 
-function fetchUserData() {
+function Search() {
   const [username, setUsername] = useState("");
-  const [userData, setUserData] = useState(null);
+  const [location, setLocation] = useState("");
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [repos, setRepos] = useState([]); // New state for repositories
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
 
   const handleUserNameChange = (event) => {
     setUsername(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const handleSearch = async (isNewSearch) => {
     setLoading(true);
-    setUserData(null);
     setError(null);
+    if (isNewSearch) {
+      setUsers([]);
+      setPage(1);
+    }
 
     try {
-      const response = await fetch(`https://api.github.com/users/${username}`);
-      if (!response.ok) {
-        throw new Error("Looks like we cant find the user");
+      let query = username;
+      if (location) {
+        query += `+location:${location}`;
       }
-      const userDataResponse = await response.json();
-      setUserData(userDataResponse);
+      query += `&page=${isNewSearch ? 1 : page}`;
 
-      // Fetch repositories
-      const reposResponse = await fetch(userDataResponse.repos_url);
-      const reposData = await reposResponse.json();
-      setRepos(reposData);
+      const data = await searchUsers(query);
+      setUsers(prev => isNewSearch ? data.items : [...prev, ...data.items]);
+      setHasMore(data.items.length > 0 && data.total_count > (isNewSearch ? data.items.length : users.length + data.items.length));
+
     } catch (error) {
-      setError(error.message);
+      setError("Failed to fetch users");
     } finally {
       setLoading(false);
     }
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleSearch(true);
+  };
+
+  const loadMore = () => {
+    setPage(prev => prev + 1);
+    handleSearch(false);
+  }
 
   return (
     <>
@@ -46,46 +64,40 @@ function fetchUserData() {
           id="username"
           value={username}
           onChange={handleUserNameChange}
-          placeholder="Enter your username"
+          placeholder="Enter a username"
         />
-        <button type="submit">Submit</button>
+        <label htmlFor="location">Location:</label>
+        <input
+          type="text"
+          id="location"
+          value={location}
+          onChange={handleLocationChange}
+          placeholder="Enter a location"
+        />
+        <button type="submit">Search</button>
       </form>
 
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      {userData && (
+      {users.length > 0 && (
         <div>
-          <h2>{userData.login}</h2>
-          <img
-            src={userData.avatar_url}
-            alt={`${userData.login}'s avatar`}
-            width="100"
-          />
-          <p>Followers: {userData.followers}</p>
-          <p>Following: {userData.following}</p>
-          <p>Public Repos: {userData.public_repos}</p>
-          <a href={userData.html_url} target="_blank" rel="Morest1124">
-            View Profile on GitHub
-          </a>
-
-          <h3>Repositories:</h3>
+          <h2>Search Results</h2>
           <ul>
-            {repos.map((repo) => (
-              <li key={repo.id}>
-                <a
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {repo.name}
+            {users.map((user) => (
+              <li key={user.id}>
+                <img src={user.avatar_url} alt={`${user.login}'s avatar`} width="50" />
+                <a href={user.html_url} target="_blank" rel="noopener noreferrer">
+                  {user.login}
                 </a>
+                <p>Score: {user.score}</p>
               </li>
             ))}
           </ul>
+          {hasMore && <button onClick={loadMore} disabled={loading}>Load More</button>}
         </div>
       )}
     </>
   );
 }
 
-export default fetchUserData;
+export default Search;

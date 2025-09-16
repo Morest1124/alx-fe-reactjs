@@ -1,44 +1,15 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-// Using API
+const API_BASE_URL = 'https://api.github.com';
 
-function fetchUserData() {
-  const [UserName, setUserName] = useState("null"); //Updates the state
-  const [Loading, setLoading] = useState("true");
-  const [error, setError] = useState(null);
-}
-
-useEffect(
-  () =>
-    fetch(" https://api.github.com/users/{username}", {
-      method: "get",
-    })
-      .then((Response) => {
-        if (!Response.ok) {
-          throw new error("Looks like we cant find the user");
-        }
-        return Response.json();
-      })
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      })
-
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      }),
-  []
-);
-
-if (Loading) return <p>Loading...</p>;
-if (error) return <p>Error: {error.message} </p>;
-
-return (
-  <>
-    <h1>Username:</h1>
-    <pre> {JSON.stringify(data, null, 2)} </pre>
-  </>
-);
-
-export default fetchUserData;
+export const searchUsers = async (query) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/search/users?q=${query}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch users');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error searching users:', error);
+    throw error;
+  }
+};
