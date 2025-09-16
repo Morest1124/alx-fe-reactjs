@@ -11,7 +11,7 @@ function fetchUserData() {
 useEffect(
   () =>
     fetch(" https://api.github.com/users/{username}", {
-      method: "GET",
+      method: "get",
     })
       .then((Response) => {
         if (!Response.ok) {
