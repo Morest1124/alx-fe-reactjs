@@ -30,14 +30,6 @@ useEffect(
       }),
   []
 );
-api_key = ".env";
-headers = "Authorization" : f"Bearer { api_key }",
-response = requests.get((headers = headers));
-response.raise_for_status();
-user_data = Response.json();
-UserName = user_data("UserName");
-avarter_url = user_data("avarter_url");
-Image = user_data("img");
 
 if (Loading) return <p>Loading...</p>;
 if (error) return <p>Error: {error.message} </p>;
