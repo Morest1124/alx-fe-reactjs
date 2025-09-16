@@ -58,7 +58,7 @@ function fetchUserData() {
           <p>Followers: {userData.followers}</p>
           <p>Following: {userData.following}</p>
           <p>Public Repos: {userData.public_repos}</p>
-          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+          <a href={userData.html_url} target="_blank" rel="Morest1124">
             View Profile on GitHub
           </a>
         </div>
