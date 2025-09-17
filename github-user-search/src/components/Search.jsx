@@ -47,7 +47,7 @@ function Search() {
           />
           <input
             type="text"
-            placeholder="Location (e.g., 'New York')"
+            placeholder="Location (e.g., 'South Africa')"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             className="w-full p-3 bg-gray-800 rounded-md border border-gray-700 focus:outline-none focus:border-blue-500"
