@@ -8,15 +8,18 @@ export const fetchUserData = async (searchTerm, location, miniRepos) => {
 
     //Conditionally add the location to the string query
     if (location) {
-      query += "location:$location";
+      query += "{location:$location}";
 
       if (miniRepos) {
-        query += "miniRepos:$miniRepos";
+        query += "{miniRepos:$miniRepos}";
       }
     }
+
+    // Use the correct GitHub Search API endpoint with the dynamically built query
     const response = await axios.get(
-      `https://api.github.com/users/${username}`
+      `https://api.github.com/search/users?q=${query}`
     );
+
     return response.data;
   } catch (error) {
     console.error("Could not get dta due to  Network error");
