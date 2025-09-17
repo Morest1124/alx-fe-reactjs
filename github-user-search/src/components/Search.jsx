@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { searchUsers } from "../services/githubService"; // Correct import for advanced search
+import { fetchUserData } from "../services/githubService"; // Correct import for advanced search
 
 function Search() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +17,12 @@ function Search() {
 
     try {
       // Use the advanced search function from your service
-      const data = await searchUsers(username, searchTerm, location, minRepos);
+      const data = await fetchUserData(
+        username,
+        searchTerm,
+        location,
+        minRepos
+      );
       setUserData(data);
     } catch (err) {
       setError("Looks like we can't find the user.");
