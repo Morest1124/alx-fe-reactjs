@@ -46,7 +46,12 @@ async function Search() {
 }
 
 <form action="post">
-  <input type="text" name="Search" id="Search" />
+  <input
+    type="text"
+    placeholder="Enter a GitHub username"
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+  />
   <button type="submit">Search</button>
 </form>;
 
