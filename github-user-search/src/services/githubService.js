@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 //get username from api
-export const fetchUserData = async (searchTerm, location, miniRepos) => {
+export const fetchUserData = async (searchTerm, location, minRepos) => {
   try {
     let query = searchTerm;
 
@@ -11,7 +11,7 @@ export const fetchUserData = async (searchTerm, location, miniRepos) => {
       query += "{location:$location}";
 
       if (miniRepos) {
-        query += "{miniRepos:$miniRepos}";
+        query += "{minRepos:$minRepos}";
       }
     }
 
