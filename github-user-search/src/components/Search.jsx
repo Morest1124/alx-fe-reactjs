@@ -18,7 +18,6 @@ function Search() {
     try {
       // Use the advanced search function from your service
       const data = await fetchUserData(
-        username,
         searchTerm,
         location,
         minRepos
@@ -71,9 +70,9 @@ function Search() {
 
         {error && <p className="text-center text-red-500">{error}</p>}
 
-        {userData && userData.length > 0 && (
+        {userData && userData.items && userData.items.length > 0 && (
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {userData.map((user) => (
+            {userData.items.map((user) => (
               <li
                 key={user.id}
                 className="bg-gray-800 p-4 rounded-md flex flex-col items-center shadow-lg"
@@ -97,7 +96,7 @@ function Search() {
           </ul>
         )}
 
-        {userData && userData.length === 0 && (
+        {userData && userData.items && userData.items.length === 0 && (
           <p className="text-center text-gray-400">
             No users found for this search.
           </p>
