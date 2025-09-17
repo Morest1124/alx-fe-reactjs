@@ -24,6 +24,7 @@ function Search() {
       );
       setUserData(data);
     } catch (err) {
+      console.error(err); // Log the actual error
       setError("Looks like we can't find the user.");
     } finally {
       setIsLoading(false);
