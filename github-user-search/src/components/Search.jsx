@@ -7,6 +7,8 @@ async function Search() {
   const [UserData, setUserData] = useState("null");
   const [Loading, setLoading] = useState("false");
   const [error, setError] = useState("null");
+  const [location, setLocation] = useState("");
+  const [miniRepos, setMiniRepos] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,6 +53,18 @@ async function Search() {
     placeholder="Enter a GitHub username"
     value={searchTerm}
     onChange={(e) => setSearchTerm(e.target.value)}
+  />
+  <input
+    type="text"
+    placeholder="Location"
+    value={location}
+    onChange={(e) => setLocation(e.target.value)}
+  />
+  <input
+    type="text"
+    placeholder="miniRepos"
+    value={location}
+    onChange={(e) => setMiniRepos(e.target.value)}
   />
   <button type="submit">Search</button>
 </form>;
