@@ -1,72 +1,105 @@
-import React, { useEffect, useState } from "react";
-import { Axios } from "axios";
-import { fetchUserData } from "../services/githubService";
+import React, { useState } from "react";
+import { searchUsers } from "../services/githubService"; // Correct import for advanced search
 
-async function Search() {
+function Search() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [UserData, setUserData] = useState("null");
-  const [Loading, setLoading] = useState("false");
-  const [error, setError] = useState("null");
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [location, setLocation] = useState("");
-  const [miniRepos, setMiniRepos] = useState("");
+  const [minRepos, setMinRepos] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setUserData(null);
+    setError(null);
     setIsLoading(true);
-    error(null);
 
     try {
-      const data = await fetchUserData(searchTerm); //awit for the data to load
-
-      //If pass update the data state
+      // Use the advanced search function from your service
+      const data = await searchUsers(username, searchTerm, location, minRepos);
       setUserData(data);
-    } catch (error) {
-      setError("Looks like we cant find the user");
+    } catch (err) {
+      setError("Looks like we can't find the user.");
     } finally {
-      isLoading(false);
+      setIsLoading(false);
     }
   };
+
   return (
-    <div className="search-container">
-      <form onSubmit="handleSubmit"></form>
+    <div className="bg-gray-900 min-h-screen text-white p-8">
+      <div className="max-w-xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6 text-center">
+          GitHub User Search
+        </h1>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 mb-6">
+          <input
+            type="text"
+            placeholder="Enter a username..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full p-3 bg-gray-800 rounded-md border border-gray-700 focus:outline-none focus:border-blue-500"
+          />
+          <input
+            type="text"
+            placeholder="Location (e.g., 'New York')"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full p-3 bg-gray-800 rounded-md border border-gray-700 focus:outline-none focus:border-blue-500"
+          />
+          <input
+            type="number"
+            placeholder="Min Repositories"
+            value={minRepos}
+            onChange={(e) => setMinRepos(e.target.value)}
+            className="w-full p-3 bg-gray-800 rounded-md border border-gray-700 focus:outline-none focus:border-blue-500"
+          />
+          <button
+            type="submit"
+            className="w-full p-3 bg-blue-600 rounded-md font-bold hover:bg-blue-700 transition-colors"
+          >
+            Search
+          </button>
+        </form>
 
-      {isLoading && <p>Loading...</p>}
-      {error && <p>Looks like we can't find user.</p>}
+        {isLoading && <p className="text-center text-gray-400">Loading...</p>}
 
-      {userData && (
-        <div>
-          <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} />
-          <h2>{userData.name}</h2>
-          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
-            View Profile
-          </a>
-        </div>
-      )}
+        {error && <p className="text-center text-red-500">{error}</p>}
+
+        {userData && userData.length > 0 && (
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {userData.map((user) => (
+              <li
+                key={user.id}
+                className="bg-gray-800 p-4 rounded-md flex flex-col items-center shadow-lg"
+              >
+                <img
+                  src={user.avatar_url}
+                  alt={`${user.login}'s avatar`}
+                  className="w-24 h-24 rounded-full mb-4 border-2 border-blue-500"
+                />
+                <h3 className="text-xl font-semibold mb-1">{user.login}</h3>
+                <a
+                  href={user.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:underline"
+                >
+                  View Profile
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {userData && userData.length === 0 && (
+          <p className="text-center text-gray-400">
+            No users found for this search.
+          </p>
+        )}
+      </div>
     </div>
   );
 }
-
-<form action="post">
-  <input
-    type="text"
-    placeholder="Enter a GitHub username"
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-  />
-  <input
-    type="text"
-    placeholder="Location"
-    value={location}
-    onChange={(e) => setLocation(e.target.value)}
-  />
-  <input
-    type="text"
-    placeholder="miniRepos"
-    value={location}
-    onChange={(e) => setMiniRepos(e.target.value)}
-  />
-  <button type="submit">Search</button>
-</form>;
 
 export default Search;
