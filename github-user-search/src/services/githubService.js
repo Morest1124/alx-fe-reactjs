@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const GITHUB_API_URL = "https://api.github.com/search/users";
+const GITHUB_API_URL = "https://api.github.com/search/users?q=";
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 const headers = {
@@ -9,21 +9,17 @@ const headers = {
 
 export const fetchUserData = async (searchTerm, location, minRepos) => {
   try {
-    const queryParts = [];
-    if (searchTerm) {
-      queryParts.push(searchTerm);
-    }
+    let query = searchTerm;
+
     if (location) {
-      queryParts.push(`location:${location}`);
+      query += `+location:${location}`;
     }
+
     if (minRepos) {
-      queryParts.push(`repos:>=${minRepos}`);
+      query += `+repos:>=${minRepos}`;
     }
 
-    const q = queryParts.join("+");
-
-    const response = await axios.get(GITHUB_API_URL, {
-      params: { q },
+    const response = await axios.get(`${GITHUB_API_URL}${query}`, {
       headers,
     });
 
