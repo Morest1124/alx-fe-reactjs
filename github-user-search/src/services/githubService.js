@@ -9,17 +9,21 @@ const headers = {
 
 export const fetchUserData = async (searchTerm, location, minRepos) => {
   try {
-    let query = searchTerm;
-
+    const queryParts = [];
+    if (searchTerm) {
+      queryParts.push(searchTerm);
+    }
     if (location) {
-      query += `+location:${location}`;
+      queryParts.push(`location:${location}`);
     }
-
     if (minRepos) {
-      query += `+repos:>=${minRepos}`;
+      queryParts.push(`repos:>=${minRepos}`);
     }
 
-    const response = await axios.get(`${GITHUB_API_URL}?q=${query}`, {
+    const q = queryParts.join("+");
+
+    const response = await axios.get(GITHUB_API_URL, {
+      params: { q },
       headers,
     });
 
