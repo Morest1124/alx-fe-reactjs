@@ -84,6 +84,7 @@ function Search() {
                   className="w-24 h-24 rounded-full mb-4 border-2 border-blue-500"
                 />
                 <h3 className="text-xl font-semibold mb-1">{user.login}</h3>
+                <p className="text-sm text-gray-400 mb-2">Score: {user.score.toFixed(2)}</p>
                 <a
                   href={user.html_url}
                   target="_blank"
