@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+    "image": "https://via.placeholder.com/400x300",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta or guanciale",
+      "2 large eggs",
+      "50g pecorino cheese, grated",
+      "50g parmesan cheese, grated",
+      "Freshly ground black pepper",
+      "Salt"
+    ],
+    "instructions": [
+      "Cook the spaghetti according to package directions.",
+      "While the pasta is cooking, fry the pancetta in a pan until crisp.",
+      "In a bowl, whisk the eggs and cheeses together.",
+      "Drain the pasta, reserving some of the cooking water.",
+      "Quickly mix the hot pasta with the pancetta, then add the egg and cheese mixture, stirring quickly to create a creamy sauce. Add a little pasta water if needed.",
+      "Serve immediately with lots of freshly ground black pepper."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+    "image": "https://via.placeholder.com/400x300",
+    "ingredients": [
+      "500g chicken breast, cubed",
+      "1 cup plain yogurt",
+      "1 tbsp lemon juice",
+      "2 tsp ground cumin",
+      "2 tsp paprika",
+      "1 tsp garam masala",
+      "1 cup tomato puree",
+      "1 cup heavy cream",
+      "1 tbsp butter"
+    ],
+    "instructions": [
+      "Marinate the chicken in yogurt, lemon juice, and spices for at least 1 hour.",
+      "Grill or pan-fry the chicken until cooked through.",
+      "In a separate pan, heat the butter and add the tomato puree.",
+      "Simmer for 5 minutes, then stir in the heavy cream.",
+      "Add the cooked chicken to the sauce and simmer for another 10 minutes.",
+      "Serve hot with naan or rice."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Classic Beef Burgers",
+    "summary": "Juicy, homemade beef burgers that are perfect for any occasion. Simple to make and delicious.",
+    "image": "https://via.placeholder.com/400x300",
+    "ingredients": [
+      "500g ground beef",
+      "1 onion, finely chopped",
+      "1 egg",
+      "4 burger buns",
+      "Lettuce, tomato, cheese, and other toppings"
+    ],
+    "instructions": [
+      "In a bowl, mix the ground beef, onion, and egg.",
+      "Form into 4 patties.",
+      "Grill or pan-fry the patties for 4-5 minutes on each side.",
+      "Serve on buns with your favorite toppings."
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Vegetable Stir-Fry",
+    "summary": "A quick and healthy vegetable stir-fry with a savory sauce. Perfect for a weeknight dinner.",
+    "image": "https://via.placeholder.com/400x300",
+    "ingredients": [
+      "1 tbsp soy sauce",
+      "1 tbsp honey",
+      "1 tsp sesame oil",
+      "2 cups mixed vegetables (broccoli, carrots, bell peppers)",
+      "1 clove garlic, minced",
+      "1 tsp ginger, grated"
+    ],
+    "instructions": [
+      "In a small bowl, whisk together the soy sauce, honey, and sesame oil.",
+      "Heat a large pan or wok over medium-high heat. Add a little oil.",
+      "Add the garlic and ginger and cook for 30 seconds until fragrant.",
+      "Add the vegetables and stir-fry for 5-7 minutes until tender-crisp.",
+      "Pour the sauce over the vegetables and cook for another minute until the sauce has thickened slightly.",
+      "Serve immediately."
+    ]
+  }
+]
