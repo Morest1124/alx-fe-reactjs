@@ -11,9 +11,9 @@ export default function RegistrationForm({ onSubmit }) {
 
   function validate(values) {
     const errs = {}
-    if (!values.username) errs.username = 'Username is required'
-    if (!values.email) errs.email = 'Email is required'
-    if (!values.password) errs.password = 'Password is required'
+    if (!username) errs.username = 'Username is required'
+    if (!email) errs.email = 'Email is required'
+    if (!password) errs.password = 'Password is required'
     return errs
   }
 
