@@ -34,17 +34,17 @@ export default function RegistrationForm({ onSubmit }) {
       <form className="form" onSubmit={handleSubmit} noValidate>
         <div className="form-row">
           <label className="form-label">Username</label>
-          <input className="form-input" name="username" value={form.username} onChange={handleChange} />
+          <input className="form-input" name="username" value={username} onChange={handleChange} />
           {errors.username && <div className="form-error">{errors.username}</div>}
         </div>
         <div className="form-row">
           <label className="form-label">Email</label>
-          <input className="form-input" name="email" value={form.email} onChange={handleChange} />
+          <input className="form-input" name="email" value={email} onChange={handleChange} />
           {errors.email && <div className="form-error">{errors.email}</div>}
         </div>
         <div className="form-row">
           <label className="form-label">Password</label>
-          <input className="form-input" name="password" type="password" value={form.password} onChange={handleChange} />
+          <input className="form-input" name="password" type="password" value={password} onChange={handleChange} />
           {errors.password && <div className="form-error">{errors.password}</div>}
         </div>
         <div className="form-actions">
