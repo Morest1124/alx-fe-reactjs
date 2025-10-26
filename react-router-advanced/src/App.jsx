@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -15,34 +15,36 @@ import './App.css';
 
 function App() {
   return (
-    <AuthProvider>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/login" element={<Login />} />
-          
-          {/* Dynamic Routing */}
-          <Route path="/posts" element={<Posts />} />
-          <Route path="/posts/:postId" element={<Post />} />
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/login" element={<Login />} />
+            
+            {/* Dynamic Routing */}
+            <Route path="/posts" element={<Posts />} />
+            <Route path="/posts/:postId" element={<Post />} />
 
-          {/* Protected and Nested Routing */}
-          <Route 
-            path="/profile" 
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="details" element={<ProfileDetails />} />
-            <Route path="settings" element={<ProfileSettings />} />
+            {/* Protected and Nested Routing */}
+            <Route 
+              path="/profile" 
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="details" element={<ProfileDetails />} />
+              <Route path="settings" element={<ProfileSettings />} />
+            </Route>
+
+            <Route path="*" element={<h2>404 Not Found</h2>} />
           </Route>
-
-          <Route path="*" element={<h2>404 Not Found</h2>} />
-        </Route>
-      </Routes>
-    </AuthProvider>
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
