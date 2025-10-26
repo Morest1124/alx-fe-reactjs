@@ -1,30 +1,31 @@
 import { useState } from 'react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import './App.css'
-import RegistrationForm from './components/RegistrationForm'
-import FormikForm from './components/FormikForm'
+import PostsComponent from './components/PostsComponent'
+
+// Create a client
+const queryClient = new QueryClient()
 
 function App() {
-  const [last, setLast] = useState(null)
+  const [showPosts, setShowPosts] = useState(true)
 
   return (
-    <div className="container">
-      <header className="hero">
-        <h1>Advanced Form Handling</h1>
-        <p className="hero-sub">Controlled components and Formik examples with validation</p>
-      </header>
-
-      <main className="grid">
-        <RegistrationForm onSubmit={setLast} />
-        <FormikForm onSubmit={setLast} />
-      </main>
-
-      {last && (
-        <section className="last-submitted">
-          <h3>Last submitted</h3>
-          <pre>{JSON.stringify(last, null, 2)}</pre>
-        </section>
-      )}
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="container">
+        <header className="hero">
+          <h1>React Query Demo</h1>
+          <p className="hero-sub">Fetching, caching, and refetching data.</p>
+        </header>
+        <button onClick={() => setShowPosts(!showPosts)}>
+          {showPosts ? 'Hide Posts' : 'Show Posts'} {isFetching ? <small>(updating...)</small> : ''}
+        </button>
+        <main>
+          {showPosts && <PostsComponent />}
+        </main>
+      </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   )
 }
 
