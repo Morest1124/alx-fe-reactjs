@@ -28,17 +28,14 @@ function App() {
             <Route path="/posts/:postId" element={<Post />} />
 
             {/* Protected and Nested Routing */}
-            <Route 
-              path="/profile" 
+            <Route
+              path="/profile/*"
               element={
                 <ProtectedRoute>
                   <Profile />
                 </ProtectedRoute>
               }
-            >
-              <Route path="details" element={<ProfileDetails />} />
-              <Route path="settings" element={<ProfileSettings />} />
-            </Route>
+            />
 
             <Route path="*" element={<h2>404 Not Found</h2>} />
           </Route>

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import ProfileDetails from './ProfileDetails';
+import ProfileSettings from './ProfileSettings';
 
 function Profile() {
   const { user } = useAuth();
@@ -15,7 +17,10 @@ function Profile() {
         </ul>
       </nav>
       <hr />
-      <Outlet />
+      <Routes>
+        <Route path="details" element={<ProfileDetails />} />
+        <Route path="settings" element={<ProfileSettings />} />
+      </Routes>
     </div>
   );
 }
