@@ -7,7 +7,7 @@ import Posts from './components/Posts';
 import Profile from './components/Profile';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
-import Layout from './components/Layout';
+import Layout from './pages/Layout';
 import './App.css';
 
 function App() {
