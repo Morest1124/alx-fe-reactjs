@@ -20,9 +20,9 @@ function PostsComponent() {
   } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPosts,
-    // The time in milliseconds that unused/inactive cache data remains in memory.
-    // When a query's cache becomes unused, that cache data will be garbage collected after this duration.
-    // Defaults to 5 minutes.
+    // gcTime (Garbage Collection Time): The time in milliseconds that unused/inactive
+    // cache data remains in memory. When a query's cache becomes unused,
+    // that cache data will be garbage collected after this duration. Defaults to 5 minutes.
     gcTime: 1000 * 60 * 10, // 10 minutes
 
     // The time in milliseconds after data is considered stale.
