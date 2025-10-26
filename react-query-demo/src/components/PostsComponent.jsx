@@ -14,6 +14,7 @@ function PostsComponent() {
     data: posts,
     error,
     isLoading,
+    isError,
     isFetching,
     refetch,
   } = useQuery({
@@ -22,7 +23,7 @@ function PostsComponent() {
   })
 
   if (isLoading) return <div>Loading...</div>
-  if (error) return <div>An error occurred: {error.message}</div>
+  if (isError) return <div>An error occurred: {error.message}</div>
 
   return (
     <div>
