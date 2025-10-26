@@ -8,6 +8,8 @@ import Profile from './components/Profile';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './pages/Layout';
+// 1. Add new import for BlogPost component
+import BlogPost from './components/BlogPost'; 
 import './App.css';
 
 function App() {
@@ -18,12 +20,14 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/blog" element={<blogPost />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login />} /> 
+        
             
-            {/* Dynamic Routing */}
+            {/* Dynamic Routing: Route for a list of posts */}
             <Route path="/posts" element={<Posts />} />
+
+            {/* 2. Add the dynamic route for a single blog post */}
+            <Route path="/blog/:id" element={<BlogPost />} />
 
             {/* Protected and Nested Routing */}
             <Route
