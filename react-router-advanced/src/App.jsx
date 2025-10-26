@@ -5,8 +5,6 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Posts from './components/Posts';
 import Profile from './components/Profile';
-import ProfileDetails from './components/ProfileDetails';
-import ProfileSettings from './components/ProfileSettings';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
