@@ -4,7 +4,6 @@ import { AuthProvider } from './context/AuthContext';
 import Home from './pages/Home';
 import About from './pages/About';
 import Posts from './components/Posts';
-import Post from './components/Post';
 import Profile from './components/Profile';
 import ProfileDetails from './components/ProfileDetails';
 import ProfileSettings from './components/ProfileSettings';
@@ -25,7 +24,6 @@ function App() {
             
             {/* Dynamic Routing */}
             <Route path="/posts" element={<Posts />} />
-            <Route path="/posts/:postId" element={<Post />} />
 
             {/* Protected and Nested Routing */}
             <Route
