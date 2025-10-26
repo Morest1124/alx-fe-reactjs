@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 
 const fetchPosts = async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/posts')
@@ -20,6 +20,21 @@ function PostsComponent() {
   } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPosts,
+    // The time in milliseconds that unused/inactive cache data remains in memory.
+    // When a query's cache becomes unused, that cache data will be garbage collected after this duration.
+    // Defaults to 5 minutes.
+    gcTime: 1000 * 60 * 10, // 10 minutes
+
+    // The time in milliseconds after data is considered stale.
+    // Fresh data will be returned from the cache, stale data will be refetched in the background.
+    // Defaults to 0.
+    staleTime: 1000 * 60 * 5, // 5 minutes
+
+    // If false, queries will not refetch on window focus.
+    // Defaults to true.
+    refetchOnWindowFocus: false,
+
+    placeholderData: keepPreviousData,
   })
 
   if (isLoading) return <div>Loading...</div>
